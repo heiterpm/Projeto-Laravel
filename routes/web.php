@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController
 };
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\TransationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,6 @@ use App\Http\Controllers\{
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/contas', function () {
     return [
@@ -34,7 +32,11 @@ Route::get('/login/{id}', function ($id) {
     return $id;
 });
 
-Route::get('users', [UserController::class, 'index']) -> name('users.index');
+Route::post('users/{id}/comments', [CommentController::class, 'store']) -> name('comments.store');
+Route::get('users/{id}/comments/create', [CommentController::class, 'create']) -> name('comments.create');
+Route::get('users/{id}/comments', [CommentController::class, 'index']) -> name('comments.index');
+
+Route::get('/', [UserController::class, 'index']) -> name('users.index');
 Route::get('users/{id}/edit', [UserController::class, 'edit']) -> name('users.edit');
 Route::delete('users/{id}', [UserController::class, 'delete']) -> name('users.delete');
 Route::put('users/{id}', [UserController::class, 'update']) -> name('users.update');

@@ -18,6 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
+        
         $users = $this -> model -> getUsers(search: $request -> search ?? '');
 
         return view('users.index',compact('users'));
@@ -56,7 +57,7 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
 
-        $data = $request-> only(['name','email']);
+        $data = $request-> only(['name','email','saldo']);
         if($request -> password)
         {
             $data['password'] = bcrypt($request -> password);

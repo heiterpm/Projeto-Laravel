@@ -33,7 +33,8 @@ class StoreUpdateUserFormRequest extends FormRequest
                 'email',
                 "unique:users,email,{$id},id"
             ],
-            'password' => 'required|min:5|max:25|'
+            'password' => 'required|min:5|max:25|',
+            'saldo' => 'integer|min:0'
         ];
 
         if($this -> method('PUT'))

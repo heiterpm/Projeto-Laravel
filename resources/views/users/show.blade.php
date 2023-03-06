@@ -9,9 +9,10 @@
 <Ul>
     <li>{{ $user -> name }}</li>
     <li>{{ $user -> email }}</li>
+    <li>{{ $user -> saldo }}</li>
 </Ul>
 
-<form action="{{route('users.delete', $uder ->id)}}" method="post">
+<form action="{{route('users.delete', $user ->id)}}" method="post">
     @method('DELETE')
     @csrf
     <button type="submit">Deletar</button>
